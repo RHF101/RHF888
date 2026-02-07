@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* HSL Values for easy theme switching */
+  /* Gold Primary */
+  --primary: 43 96% 58%; 
+  --primary-foreground: 20 14% 4%;
+
+  /* Dark Backgrounds */
+  --background: 240 10% 4%;
+  --foreground: 0 0% 95%;
+
+  /* Card/Surface */
+  --card: 240 10% 7%;
+  --card-foreground: 0 0% 95%;
+
+  /* Popover */
+  --popover: 240 10% 7%;
+  --popover-foreground: 0 0% 95%;
+
+  /* Secondary (Red Accent for Casino feel) */
+  --secondary: 0 72% 51%;
+  --secondary-foreground: 0 0% 98%;
+
+  /* Muted */
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 65%;
+
+  /* Accent (Darker Gold/Bronze) */
+  --accent: 43 70% 50%;
+  --accent-foreground: 20 14% 4%;
+
+  /* Destructive */
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Border/Input/Ring */
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 43 96% 58%;
+
+  --radius: 0.75rem;
+
+  /* Fonts */
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-white;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    @apply text-primary;
+  }
+  .bg-gold {
+    @apply bg-primary text-primary-foreground;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(to bottom, #FFD700, #FDB931);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .border-gradient-gold {
+    border-image: linear-gradient(to right, #FFD700, #FDB931) 1;
+  }
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-md border border-white/5 shadow-xl;
+  }
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+  .shimmer::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+    transform: skewX(-20deg) translateX(-150%);
+    animation: shimmer 3s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: skewX(-20deg) translateX(-150%); }
+  100% { transform: skewX(-20deg) translateX(150%); }
+}
